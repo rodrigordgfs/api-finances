@@ -1,5 +1,6 @@
 const { Transaction } = require("../models");
 const { Router } = require("express");
+const moment = require("moment");
 
 const router = Router();
 
@@ -14,8 +15,19 @@ router.get("/:id", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-  await Transaction.create(req.body);
-  res.status(201).json({ message: "Transaction created successfully" });
+  let { amount, category, date, title, type, repeat } = req.body;
+  repeat = repeat || 0;
+  try {
+    for (let i = 0; i <= repeat; i++) {
+      if (i !== 0) {
+        date = moment(date).add(1, "M").format("YYYY-MM-DD");
+      }
+      await Transaction.create({ amount, category, date, title, type });
+    }
+    res.status(201).json({ message: "Transaction created successfully" });
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
 });
 
 router.patch("/:id", async (req, res) => {

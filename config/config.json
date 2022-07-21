@@ -2,14 +2,14 @@
   "development": {
     "username": "rodrigordgfs",
     "password": "mB7Dfn@X",
-    "database": "api-finance",
+    "database": "api-finance-sandbox",
     "host": "50.62.137.42",
     "dialect": "mysql"
   },
   "test": {
     "username": "rodrigordgfs",
     "password": "mB7Dfn@X",
-    "database": "api-finance",
+    "database": "api-finance-sandbox",
     "host": "50.62.137.42",
     "dialect": "mysql"
   },
