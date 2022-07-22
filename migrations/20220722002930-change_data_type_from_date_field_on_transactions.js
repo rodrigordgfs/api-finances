@@ -3,6 +3,7 @@ module.exports = {
     return Promise.all([
       queryInterface.changeColumn("Transactions", "date", {
         type: Sequelize.DATEONLY,
+        allowNull: false,
       }),
     ]);
   },
@@ -11,6 +12,7 @@ module.exports = {
     return Promise.all([
       queryInterface.changeColumn("Transactions", "date", {
         type: Sequelize.DATE,
+        allowNull: false,
       }),
     ]);
   },
