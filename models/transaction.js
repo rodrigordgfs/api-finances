@@ -3,7 +3,7 @@ const Transaction = (sequelize, DataTypes) => {
     id: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
-      primaryKey: true
+      primaryKey: true,
     },
     amount: {
       type: DataTypes.DECIMAL(10, 2),
@@ -23,6 +23,10 @@ const Transaction = (sequelize, DataTypes) => {
     },
     type: {
       type: DataTypes.ENUM("Receita", "Despesa"),
+      allowNull: false,
+    },
+    user: {
+      type: DataTypes.STRING,
       allowNull: false,
     },
     createdAt: {

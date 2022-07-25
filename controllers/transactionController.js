@@ -5,7 +5,13 @@ const moment = require("moment");
 const router = Router();
 
 router.get("/", async (req, res) => {
-  const transactions = await Transaction.findAll();
+  const { user } = req.query;
+  if (!user) {
+    return res.status(400).json({
+      error: "É necessário o parametro Usuário!",
+    });
+  }
+  const transactions = await Transaction.findAll({ where: { user } });
   res.status(200).json(transactions);
 });
 
@@ -15,14 +21,14 @@ router.get("/:id", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-  let { amount, category, date, title, type, repeat } = req.body;
+  let { amount, category, date, title, type, repeat, user } = req.body;
   repeat = repeat || 0;
   try {
     for (let i = 0; i <= repeat; i++) {
       if (i !== 0) {
         date = moment(date).add(1, "M").format("YYYY-MM-DD");
       }
-      await Transaction.create({ amount, category, date, title, type });
+      await Transaction.create({ amount, category, date, title, type, user });
     }
     res.status(201).json({ message: "Transaction created successfully" });
   } catch (error) {
