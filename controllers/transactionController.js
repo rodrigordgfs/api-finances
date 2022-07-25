@@ -43,6 +43,17 @@ router.patch("/:id", async (req, res) => {
   res.status(200).json({ message: "Transaction updated successfully" });
 });
 
+router.patch("/:id/pay", async (req, res) => {
+  const { paid } = req.body;
+  await Transaction.update(
+    { paid },
+    {
+      where: { id: req.params.id },
+    }
+  );
+  res.status(200).json({ message: "Transaction updated successfully" });
+});
+
 router.delete("/:id", async (req, res) => {
   await Transaction.destroy({
     where: { id: req.params.id },

@@ -29,6 +29,10 @@ const Transaction = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    paid: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
     createdAt: {
       allowNull: false,
       type: DataTypes.DATE,

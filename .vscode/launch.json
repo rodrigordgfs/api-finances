@@ -7,12 +7,24 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "API Server",
+            "name": "Development",
             "runtimeExecutable": "${workspaceFolder}/node_modules/nodemon/bin/nodemon.js",
             "program": "${workspaceFolder}/index.js",
             "restart": true,
             "console": "integratedTerminal",
-            "internalConsoleOptions": "neverOpen"
+            "internalConsoleOptions": "neverOpen",
+            "envFile": "${workspaceFolder}/.env.development",
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Production",
+            "runtimeExecutable": "${workspaceFolder}/node_modules/nodemon/bin/nodemon.js",
+            "program": "${workspaceFolder}/index.js",
+            "restart": true,
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen",
+            "envFile": "${workspaceFolder}/.env.production",
         }
     ]
 }
